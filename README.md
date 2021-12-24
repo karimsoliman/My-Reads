@@ -2,7 +2,7 @@
 
 This is the Book Tracking App for Udacity's React Fundamentals course. The goal of this App is to help you rack your reading and categorize your books in shelves.
 
-## TL;DR
+## Instructions to install and start the app
 
 To start the app:
 
