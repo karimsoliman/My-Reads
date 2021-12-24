@@ -25,7 +25,7 @@ class SearchResults extends Component {
                     </ol>
                 )}
             </div>
-        )
+        );
     }
 }
 

@@ -5,9 +5,9 @@ class AddBook extends Component {
     render() {
         return (
             <div className="open-search">
-              <Link className="search-button" onClick={this.props.handleSearchNavigation} to="/search">Add a book</Link>
+                <Link className="search-button" onClick={this.props.handleSearchNavigation} to="/search">Add a book</Link>
             </div>
-        )
+        );
     }
 }
 

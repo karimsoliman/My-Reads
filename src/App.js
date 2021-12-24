@@ -12,8 +12,8 @@ class BooksApp extends React.Component {
     error: null,
     loadingBooks: false,
     loadingSearch: false,
-    searchError : null
-  }
+    searchError: null
+  };
 
   fetchBooks() {
     this.setState({ loadingBooks: true, error: null }, () => {
@@ -23,18 +23,18 @@ class BooksApp extends React.Component {
         this.setState({ error: error, loadingBooks: false });
       })
     });
-  }
+  };
 
   componentDidMount() {
     this.fetchBooks();
-  }
+  };
 
-  handleHomeNavigation= () => {
+  handleHomeNavigation = () => {
     this.fetchBooks();
   };
 
   handleSearchNavigation = () => {
-    this.setState({searchError: false, BooksSearch: []})
+    this.setState({ searchError: false, BooksSearch: [] })
   };
 
   handleSearchBooks = (query) => {
@@ -53,12 +53,12 @@ class BooksApp extends React.Component {
                 )
               }) : this.setState({ loadingSearch: false })
           }).catch(error => {
-            this.setState({searchError: error, loadingSearch: false})
+            this.setState({ searchError: error, loadingSearch: false })
           })
         })
       )
       : (this.setState({ BooksSearch: [] }))
-  }
+  };
 
   handleUpdateBookShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
@@ -69,7 +69,7 @@ class BooksApp extends React.Component {
     ) : (
       this.setState({ Books: [...this.state.Books, { ...book, shelf: shelf }] })
     )
-  }
+  };
 
   render() {
     return (
@@ -82,28 +82,28 @@ class BooksApp extends React.Component {
                 loading={this.state.loadingSearch}
                 books={this.state.BooksSearch}
                 updateBookShelf={this.handleUpdateBookShelf}
-                handleBookSearch={this.handleSearchBooks} 
+                handleBookSearch={this.handleSearchBooks}
                 handleHomeNavigation={this.handleHomeNavigation}
                 error={this.state.searchError}
-                />
+              />
             }
           />
           <Route
             exact path="/"
             element=
             {
-            <BookList
-              loading={this.state.loadingBooks}
-              error={this.state.error}
-              handleShelfChange={this.handleUpdateBookShelf}
-              books={this.state.Books}
-              handleSearchNavigation={this.handleSearchNavigation}
-            />
+              <BookList
+                loading={this.state.loadingBooks}
+                error={this.state.error}
+                handleShelfChange={this.handleUpdateBookShelf}
+                books={this.state.Books}
+                handleSearchNavigation={this.handleSearchNavigation}
+              />
             }
           />
         </Routes>
       </div>
-    )
+    );
   }
 }
 

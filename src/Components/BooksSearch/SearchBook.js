@@ -21,7 +21,7 @@ class SearchBook extends Component {
                         value={bookQuery} onChange={(e) => this.handleQueryChange(e.target.value)} />
                 </div>
             </div>
-        )
+        );
     }
 }
 
