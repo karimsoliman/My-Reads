@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookList from './Components/BooksLibrary/BookList'
 import BookSearchList from './Components/BooksSearch/BookSearchList'
+import { debounce } from "debounce";
 
 class BooksApp extends React.Component {
   state = {
@@ -37,7 +38,7 @@ class BooksApp extends React.Component {
     this.setState({ searchError: false, BooksSearch: [] })
   };
 
-  handleSearchBooks = (query) => {
+  handleSearchBooks = debounce((query) => {
     query.length > 0 ?
       (
         this.setState({ loadingSearch: true, searchError: false }, () => {
@@ -51,14 +52,14 @@ class BooksApp extends React.Component {
                     this.state.Books.filter(b => b.id === book.id)[0].shelf : 'none'
                 })
                 )
-              }) : this.setState({ loadingSearch: false })
+              }) : this.setState({ loadingSearch: false, BooksSearch: []})
           }).catch(error => {
             this.setState({ searchError: error, loadingSearch: false })
           })
         })
       )
       : (this.setState({ BooksSearch: [] }))
-  };
+  }, 250);
 
   handleUpdateBookShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
